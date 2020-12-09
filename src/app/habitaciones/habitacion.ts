@@ -6,14 +6,20 @@ export class Habitacion {
 
 
   listarDispositivos():Promise<Array<Dispositivo>>{
-    throw new Error('Unimpremented');
+    throw new Error('Unimplemented');
 
   }
 
   anadirDispositivo(dispositivo:Dispositivo):void{
-    throw new Error('Unimpremented');
+    throw new Error('Unimplemented');
 
   }
+
+  eliminarDispositivo(dispositivo:Dispositivo):void{
+    throw new Error('Unimplemented');
+
+  }
+
 }
 
 

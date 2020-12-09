@@ -9,13 +9,13 @@ export class DispositivosService {
   constructor() { }
 
   getEstadoDeDispositivo(dispositivo:Dispositivo) :Promise<number>{
-    throw new Error('Unimpremented')
+    throw new Error('Unimplemented')
   }
 
 
   //De volvera si esta  o no asignado un dispositivo
   estaAsigando(dispositivo:Dispositivo):Promise<boolean>{
-    throw new Error('Unimpremented')
+    throw new Error('Unimplemented')
 
   }
 
