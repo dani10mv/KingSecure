@@ -1,16 +1,19 @@
 
 import {Dispositivo} from '../dispositivos/dispositivo';
-import {limpiarEstado, obtenerServicioDispositivos} from './comun';
+import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
 import {DispositivoYaAnadido} from '../habitaciones/errores/dispositivo-ya-anadido';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 
 describe('HU06: Asignar un dispositivo a una habitación', () => {
 
   let dispositivos: DispositivosService;
+  let habitaciones: HabitacionesService;
 
   beforeEach(() => {
     dispositivos = obtenerServicioDispositivos();
+    habitaciones= obtenerServicioHabitaciones();
   });
 
   it('Despues de asignarle una habitación a un dispositivo este deberia estar activo y asignado a la habitación', async () => {
@@ -25,9 +28,8 @@ describe('HU06: Asignar un dispositivo a una habitación', () => {
 
     // When: Asignamos una habitación al dispositivo
 
-    habitacion.anadirDispositivo(dispositivo);
-    let dispositivosDeHabitacion:Array<Dispositivo>=await habitacion.listarDispositivos();
-    const listaDispositivos=await habitacion.listarDispositivos();
+    habitaciones.anadirDispositivo(habitacion,dispositivo);
+    let dispositivosDeHabitacion:Array<Dispositivo>=await habitaciones.listarDispositivos(habitacion);
     // Then: El dispositivo esta asignado a la habitación y activo
     expect(dispositivos.estaAsigando(dispositivo)).toBeTrue();
     expect(dispositivos.getEstadoDeDispositivo(dispositivo)).toMatch('activado');
@@ -49,12 +51,12 @@ describe('HU06: Asignar un dispositivo a una habitación', () => {
       asignado:false
     }
 
-    habitacion.anadirDispositivo(dispositivo);
+    habitaciones.anadirDispositivo(habitacion,dispositivo);
 
     // When:intentamos añadir un dispositivo que ya pertenece a la habitacion que se intenta asignar
 
     // Then: lanzará un error al ya contener al dispositivo
-    await expectAsync(habitacion.anadirDispositivo(dispositivo)).toBeRejectedWith(new DispositivoYaAnadido(habitacion));
+    await expectAsync(habitaciones.anadirDispositivo(habitacion,dispositivo)).toBeRejectedWith(new DispositivoYaAnadido(habitacion));
   });
 
   afterEach(() => {

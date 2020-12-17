@@ -2,16 +2,19 @@
 
 
 import {Dispositivo} from '../dispositivos/dispositivo';
-import {limpiarEstado, obtenerServicioDispositivos} from './comun';
+import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 
 describe('HU09: Consultar el estado de un dispositivo', () => {
 
   let dispositivos: DispositivosService;
+  let habitaciones:HabitacionesService;
 
   beforeEach(() => {
     dispositivos = obtenerServicioDispositivos();
+    habitaciones= obtenerServicioHabitaciones();
   });
 
   it('debería devolver el estado del dispositivo no activo y no asignado', async () => {
@@ -41,7 +44,7 @@ describe('HU09: Consultar el estado de un dispositivo', () => {
     }    // When: Asignamos el dispositivo a una habitacion
     let habitacion:Habitacion;
 
-    habitacion.anadirDispositivo(dispositivo);
+    habitaciones.anadirDispositivo(habitacion,dispositivo);
 
     const estado = await dispositivos.getEstadoDeDispositivo(dispositivo);
     const asignado= await dispositivos.estaAsigando(dispositivo);

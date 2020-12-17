@@ -2,16 +2,19 @@
 
 
 import {Dispositivo} from '../dispositivos/dispositivo';
-import {limpiarEstado, obtenerServicioDispositivos} from './comun';
+import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 
 describe('HU10: Consultar lista de dispositivos de una habitación', () => {
 
   let dispositivos: DispositivosService;
+  let habitaciones: HabitacionesService;
 
   beforeEach(() => {
     dispositivos = obtenerServicioDispositivos();
+    habitaciones= obtenerServicioHabitaciones();
   });
 
   it('Despues de asignarle una habitación a un dispositivo el tamaño de esta deberia ser 1 si esta estaba vacia', async () => {
@@ -26,8 +29,8 @@ describe('HU10: Consultar lista de dispositivos de una habitación', () => {
 
     // When: Asignamos una habitación al dispositivo
 
-    habitacion.anadirDispositivo(dispositivo);
-    const listaDispositivos=await habitacion.listarDispositivos();
+    habitaciones.anadirDispositivo(habitacion,dispositivo);
+    const listaDispositivos=await habitaciones.listarDispositivos(habitacion);
     // Then: el tamaño de la habitación será 1
     expect(listaDispositivos.length).toBe(1);
 
@@ -41,7 +44,7 @@ describe('HU10: Consultar lista de dispositivos de una habitación', () => {
 
     // When: Vemos cuantos dispositivos tiene asignados
 
-    const listaDispositivos=await habitacion.listarDispositivos();
+    const listaDispositivos=await habitaciones.listarDispositivos(habitacion);
     // Then: el tamaño de la habitación será 0
     expect(listaDispositivos.length).toBe(0);
   });

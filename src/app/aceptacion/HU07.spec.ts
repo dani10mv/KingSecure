@@ -2,18 +2,20 @@
 
 
 import {Dispositivo} from '../dispositivos/dispositivo';
-import {limpiarEstado, obtenerServicioDispositivos} from './comun';
+import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
 import {DispositivoYaAnadido} from '../habitaciones/errores/dispositivo-ya-anadido';
 import {DispositovoNoEncontrado} from '../habitaciones/errores/dispositovoNoEncontrado';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 
 describe('HU07: Borrar un dispositivo de una habitación', () => {
 
   let dispositivos: DispositivosService;
-
+  let habitaciones: HabitacionesService
   beforeEach(() => {
     dispositivos = obtenerServicioDispositivos();
+    habitaciones = obtenerServicioHabitaciones();
   });
 
   it('Después de borrar un dispositivo de una habitación el dispositivo no está en la habitación y está apagado', async () => {
@@ -26,13 +28,13 @@ describe('HU07: Borrar un dispositivo de una habitación', () => {
     }
     let habitacion:Habitacion;
 
-    habitacion.anadirDispositivo(dispositivo);
+    habitaciones.anadirDispositivo(habitacion,dispositivo);
 
-    const listaDispositivos=await habitacion.listarDispositivos();
+    const listaDispositivos=await habitaciones.listarDispositivos(habitacion);
 
     // When: Borramos al dispositivo de la habitación
 
-    habitacion.eliminarDispositivo(dispositivo);
+    habitaciones.eliminarDispositivo(habitacion,dispositivo);
 
     // Then: El dispositivo no está en la habitación y está apagado
 
@@ -55,7 +57,7 @@ describe('HU07: Borrar un dispositivo de una habitación', () => {
 
     // When: Intentamos eliminar un dispositivo que no tiene la habitación
     // Then: Muestra un error por no encontrar ese dispositivo en la habitación
-    await expectAsync(habitacion.eliminarDispositivo(dispositivo)).toBeRejectedWith(new DispositovoNoEncontrado(habitacion));
+    await expectAsync(habitaciones.eliminarDispositivo(habitacion,dispositivo)).toBeRejectedWith(new DispositovoNoEncontrado(habitacion));
   });
 
   afterEach(() => {
