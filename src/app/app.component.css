@@ -1,0 +1,17 @@
+body{
+  background-color: aliceblue;
+  border: red 3px solid;
+  margin: 0;
+  line-height: 1;
+  background-size: cover;
+
+}
+
+.main{
+  background-color: aliceblue;
+  border-color: aliceblue;
+  margin: auto;
+  padding: auto;
+  height: 100vh;
+  background-size: cover;
+}

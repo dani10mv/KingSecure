@@ -3,11 +3,11 @@ import {TestBed} from '@angular/core/testing';
 import {HabitacionesService} from '../habitaciones/habitaciones.service';
 
 export function obtenerServicioDispositivos(): DispositivosService {
-  TestBed.configureTestingModule({});
+  //TestBed.configureTestingModule({});
   return  TestBed.inject(DispositivosService);
 }
 export function obtenerServicioHabitaciones(): HabitacionesService {
-  TestBed.configureTestingModule({});
+  //TestBed.configureTestingModule({});
   return  TestBed.inject(HabitacionesService);
 }
 
