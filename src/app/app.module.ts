@@ -9,13 +9,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import { DispositivosComponent } from './dispositivos/dispositivos/dispositivos.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { InfoHabtiacionesComponent } from './habitaciones/habitaciones/info-habtiaciones/info-habtiaciones.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HabitacionesComponent,
-    DispositivosComponent
+    DispositivosComponent,
+    InfoHabtiacionesComponent
   ],
   imports: [
     BrowserModule,
