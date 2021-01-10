@@ -10,6 +10,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import { DispositivosComponent } from './dispositivos/dispositivos/dispositivos.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { InfoHabtiacionesComponent } from './habitaciones/habitaciones/info-habtiaciones/info-habtiaciones.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+// @ts-ignore
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -23,8 +29,12 @@ import { InfoHabtiacionesComponent } from './habitaciones/habitaciones/info-habt
     BrowserModule,
     MatCardModule,
     MatDividerModule,
-    MatGridListModule
-
+    MatGridListModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
