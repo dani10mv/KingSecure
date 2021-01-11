@@ -1,6 +1,8 @@
-html{
-  background-color: aliceblue;
-}
+
 .dis{
+  margin: auto;
   border: 2px black solid;
+  border-radius: 30px;
+  width: 90%;
+  background-color: aliceblue;
 }

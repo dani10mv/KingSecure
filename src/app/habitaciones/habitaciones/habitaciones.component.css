@@ -1,6 +1,12 @@
-html{
+
+.hab{
+  margin: auto;
+  border: 2px black solid;
+  border-radius: 30px;
+  width: 90%;
   background-color: aliceblue;
 }
-.hab{
-  border: 2px black solid;
+button{
+  margin: auto;
+
 }

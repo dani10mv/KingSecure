@@ -15,7 +15,10 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 // @ts-ignore
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
+import { AnyadirHabitacionComponent } from './habitaciones/habitaciones/anyadir-habitacion/anyadir-habitacion.component';
+import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -23,7 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     AppComponent,
     HabitacionesComponent,
     DispositivosComponent,
-    InfoHabtiacionesComponent
+    InfoHabtiacionesComponent,
+    AnyadirHabitacionComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +38,18 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule,
+
   ],
-  providers: [],
+  entryComponents: [
+    AnyadirHabitacionComponent,
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent],
+
 
 
 })

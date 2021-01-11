@@ -7,7 +7,7 @@ export function obtenerServicioDispositivos(): DispositivosService {
   return  TestBed.inject(DispositivosService);
 }
 export function obtenerServicioHabitaciones(): HabitacionesService {
-  //TestBed.configureTestingModule({});
+  // TestBed.configureTestingModule({});
   return  TestBed.inject(HabitacionesService);
 }
 
