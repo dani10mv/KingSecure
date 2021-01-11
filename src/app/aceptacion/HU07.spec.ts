@@ -1,14 +1,14 @@
 
 
 
-import {Dispositivo} from '../app/dispositivos/dispositivo';
+import {Dispositivo} from '../dispositivos/dispositivo';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
-import {DispositivosService} from '../app/dispositivos/dispositivos.service';
-import {Habitacion} from '../app/habitaciones/habitacion';
-import {DispositivoYaAnadido} from '../app/habitaciones/errores/dispositivo-ya-anadido';
-import {DispositovoNoEncontrado} from '../app/habitaciones/errores/dispositovoNoEncontrado';
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
-
+import {DispositivosService} from '../dispositivos/dispositivos.service';
+import {Habitacion} from '../habitaciones/habitacion';
+import {DispositivoYaAnadido} from '../habitaciones/errores/dispositivo-ya-anadido';
+import {DispositovoNoEncontrado} from '../habitaciones/errores/dispositovoNoEncontrado';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
+/*
 describe('HU07: Borrar un dispositivo de una habitación', () => {
 
   let dispositivos: DispositivosService;
@@ -70,3 +70,4 @@ describe('HU07: Borrar un dispositivo de una habitación', () => {
     limpiarEstado();
   });
 });
+*/

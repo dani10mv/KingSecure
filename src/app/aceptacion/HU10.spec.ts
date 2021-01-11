@@ -1,12 +1,12 @@
 
 
 
-import {Dispositivo} from '../app/dispositivos/dispositivo';
+import {Dispositivo} from '../dispositivos/dispositivo';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
-import {DispositivosService} from '../app/dispositivos/dispositivos.service';
-import {Habitacion} from '../app/habitaciones/habitacion';
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
-
+import {DispositivosService} from '../dispositivos/dispositivos.service';
+import {Habitacion} from '../habitaciones/habitacion';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
+/*
 describe('HU10: Consultar lista de dispositivos de una habitación', () => {
 
   let dispositivos: DispositivosService;
@@ -53,3 +53,4 @@ describe('HU10: Consultar lista de dispositivos de una habitación', () => {
     limpiarEstado();
   });
 });
+*/

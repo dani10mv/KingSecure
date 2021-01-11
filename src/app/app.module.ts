@@ -20,7 +20,8 @@ import { AnyadirHabitacionComponent } from './habitaciones/habitaciones/anyadir-
 import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {FormsModule} from "@angular/forms";
 import {AngularFireModule} from '@angular/fire';
-import {environment} from '../environments/environment'
+import {environment} from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {environment} from '../environments/environment'
     MatFormFieldModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireModule
+    AngularFireModule,
+    BrowserAnimationsModule
 
   ],
   entryComponents: [

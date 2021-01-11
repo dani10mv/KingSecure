@@ -5,6 +5,7 @@ import {AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore} 
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Action} from 'rxjs/internal/scheduler/Action';
+import {HabitacionYaAnadida} from './errores/habitacion-ya-anadida';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,16 @@ export class HabitacionesService {
 
 
   anadirHabitacion(habitacion: Habitacion):void{
+
+    this.habitacionesList.forEach(habs=>{
+      habs.forEach(hab=>{
+          if (hab.nombre===habitacion.nombre){
+            return new HabitacionYaAnadida(habitacion.nombre);
+          }
+        }
+      );
+    });
+
     this.habitacionesCollection.add(habitacion);
   }
 

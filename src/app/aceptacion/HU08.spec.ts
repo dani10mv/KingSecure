@@ -1,9 +1,9 @@
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
-import {DispositivosService} from '../app/dispositivos/dispositivos.service';
-import {Dispositivo} from '../app/dispositivos/dispositivo';
-import {Habitacion} from '../app/habitaciones/habitacion';
-
+import {DispositivosService} from '../dispositivos/dispositivos.service';
+import {Dispositivo} from '../dispositivos/dispositivo';
+import {Habitacion} from '../habitaciones/habitacion';
+/*
 describe('HU08: Como usuario quiero que se guarden los cambios cuando cierre la aplicación', () => {
 
   let habitaciones: HabitacionesService;
@@ -73,3 +73,4 @@ describe('HU08: Como usuario quiero que se guarden los cambios cuando cierre la 
     limpiarEstado();
   });
 });
+*/

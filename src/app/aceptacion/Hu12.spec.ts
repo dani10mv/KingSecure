@@ -1,9 +1,9 @@
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
-import {DispositivosService} from '../app/dispositivos/dispositivos.service';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
+import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
-import {Habitacion} from '../app/habitaciones/habitacion';
-import {Dispositivo} from '../app/dispositivos/dispositivo';
-
+import {Habitacion} from '../habitaciones/habitacion';
+import {Dispositivo} from '../dispositivos/dispositivo';
+/*
 describe('HU12: Como usuario quiero poder consultar el listado de habitaciones creadas',  () => {
 
   let habitaciones: HabitacionesService;
@@ -57,3 +57,4 @@ describe('HU12: Como usuario quiero poder consultar el listado de habitaciones c
     limpiarEstado();
   });
 });
+*/

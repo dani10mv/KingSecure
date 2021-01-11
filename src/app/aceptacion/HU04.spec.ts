@@ -1,9 +1,9 @@
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
 import {limpiarEstado, obtenerServicioHabitaciones} from './comun';
-import {Habitacion} from '../app/habitaciones/habitacion';
-import {Dispositivo} from '../app/dispositivos/dispositivo';
-import {NombreYaExistente} from '../app/habitaciones/errores/nombre-ya-existente';
-
+import {Habitacion} from '../habitaciones/habitacion';
+import {Dispositivo} from '../dispositivos/dispositivo';
+import {NombreYaExistente} from '../habitaciones/errores/nombre-ya-existente';
+/*
 describe('Como usuario quiero poder cambiar el nombre de una habitación existente del sistema', () => {
 
   let habitaciones: HabitacionesService;
@@ -53,3 +53,4 @@ describe('Como usuario quiero poder cambiar el nombre de una habitación existen
     limpiarEstado();
   });
 });
+*/

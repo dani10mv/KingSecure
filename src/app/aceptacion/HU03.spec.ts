@@ -1,10 +1,10 @@
 import {limpiarEstado, obtenerServicioHabitaciones} from './comun';
-import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
-import {Habitacion} from '../app/habitaciones/habitacion';
-import {Dispositivo} from '../app/dispositivos/dispositivo';
-import {HabitacionYaAnadida} from '../app/habitaciones/errores/habitacion-ya-anadida';
-import {HabitacionNoEncontrada} from '../app/habitaciones/errores/habitacion-no-encontrada';
-
+import {HabitacionesService} from '../habitaciones/habitaciones.service';
+import {Habitacion} from '../habitaciones/habitacion';
+import {Dispositivo} from '../dispositivos/dispositivo';
+import {HabitacionYaAnadida} from '../habitaciones/errores/habitacion-ya-anadida';
+import {HabitacionNoEncontrada} from '../habitaciones/errores/habitacion-no-encontrada';
+/*
 
 describe('Como usuario quiero poder borrar una habitación del sistema', () => {
 
@@ -47,3 +47,4 @@ describe('Como usuario quiero poder borrar una habitación del sistema', () => {
     limpiarEstado();
   });
 });
+*/
