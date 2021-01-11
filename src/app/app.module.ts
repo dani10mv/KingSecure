@@ -19,6 +19,8 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dia
 import { AnyadirHabitacionComponent } from './habitaciones/habitaciones/anyadir-habitacion/anyadir-habitacion.component';
 import {MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {FormsModule} from "@angular/forms";
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment'
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import {FormsModule} from "@angular/forms";
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule
 
   ],
   entryComponents: [

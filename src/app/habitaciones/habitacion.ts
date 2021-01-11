@@ -1,9 +1,9 @@
 import {Dispositivo} from '../dispositivos/dispositivo';
 
 export interface Habitacion {
-  id?: number;
+  id?: string;
   nombre: string;
-  dispositivos: Array<Dispositivo>
+  dispositivos: string[];
 
 
 

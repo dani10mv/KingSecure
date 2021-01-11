@@ -1,10 +1,10 @@
 
-import {Dispositivo} from '../dispositivos/dispositivo';
+import {Dispositivo} from '../app/dispositivos/dispositivo';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
-import {DispositivosService} from '../dispositivos/dispositivos.service';
-import {Habitacion} from '../habitaciones/habitacion';
-import {DispositivoYaAnadido} from '../habitaciones/errores/dispositivo-ya-anadido';
-import {HabitacionesService} from '../habitaciones/habitaciones.service';
+import {DispositivosService} from '../app/dispositivos/dispositivos.service';
+import {Habitacion} from '../app/habitaciones/habitacion';
+import {DispositivoYaAnadido} from '../app/habitaciones/errores/dispositivo-ya-anadido';
+import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
 
 describe('HU06: Asignar un dispositivo a una habitación', () => {
 
@@ -42,7 +42,10 @@ describe('HU06: Asignar un dispositivo a una habitación', () => {
   it('Al intentar asignar a un dispositivo una habitación que ya tiene asignada debe mostrar un mensaje de error', async () => {
     // Given: Un dispositivo con una habitación ya asignada
 
-    let habitacion: Habitacion;
+    const habitacion: Habitacion={
+      nombre: 'cocina',
+      dispositivos: Array<Dispositivo>()
+    };
 
     const dispositivo: Dispositivo = {
       nombre: 'Sensor de Ventana',

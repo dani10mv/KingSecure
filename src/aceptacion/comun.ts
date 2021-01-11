@@ -1,6 +1,6 @@
-import {DispositivosService} from '../dispositivos/dispositivos.service';
+import {DispositivosService} from '../app/dispositivos/dispositivos.service';
 import {TestBed} from '@angular/core/testing';
-import {HabitacionesService} from '../habitaciones/habitaciones.service';
+import {HabitacionesService} from '../app/habitaciones/habitaciones.service';
 
 export function obtenerServicioDispositivos(): DispositivosService {
   //TestBed.configureTestingModule({});
