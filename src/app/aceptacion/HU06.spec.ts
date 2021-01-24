@@ -5,7 +5,7 @@ import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
 import {DispositivoYaAnadido} from '../habitaciones/errores/dispositivo-ya-anadido';
 import {HabitacionesService} from '../habitaciones/habitaciones.service';
-/*
+
 describe('HU06: Asignar un dispositivo a una habitación', () => {
 
   let dispositivos: DispositivosService;
@@ -66,4 +66,4 @@ describe('HU06: Asignar un dispositivo a una habitación', () => {
     limpiarEstado();
   });
 });
-*/
+

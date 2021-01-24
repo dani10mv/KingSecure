@@ -1,5 +1,4 @@
 
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import {TestBed} from "@angular/core/testing";
 
 
 @NgModule({
@@ -57,6 +57,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
   bootstrap: [AppComponent],
 
 
-
 })
+
 export class AppModule { }

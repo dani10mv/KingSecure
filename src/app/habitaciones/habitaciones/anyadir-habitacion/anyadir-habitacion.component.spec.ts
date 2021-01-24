@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnyadirHabitacionComponent } from './anyadir-habitacion.component';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MaterialesModule} from '../../../../Materiales.module';
+import {MatFormField} from '@angular/material/form-field';
 
 describe('AnyadirHabitacionComponent', () => {
   let component: AnyadirHabitacionComponent;
@@ -8,18 +11,25 @@ describe('AnyadirHabitacionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AnyadirHabitacionComponent ]
+      providers: [
+        {provide: MatDialogRef, useValue: {}},
+        {provide: MAT_DIALOG_DATA, useValue: {}},
+        {provide: MatFormField, useValue: {}},
+      ],
+      declarations: [ AnyadirHabitacionComponent ],
+
     })
-    .compileComponents();
+      .compileComponents();
+
   });
 
-  beforeEach(() => {
+beforeEach(() => {
     fixture = TestBed.createComponent(AnyadirHabitacionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+})

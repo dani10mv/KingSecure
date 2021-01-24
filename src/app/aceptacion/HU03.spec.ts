@@ -4,7 +4,7 @@ import {Habitacion} from '../habitaciones/habitacion';
 import {Dispositivo} from '../dispositivos/dispositivo';
 import {HabitacionYaAnadida} from '../habitaciones/errores/habitacion-ya-anadida';
 import {HabitacionNoEncontrada} from '../habitaciones/errores/habitacion-no-encontrada';
-/*
+
 
 describe('Como usuario quiero poder borrar una habitación del sistema', () => {
 
@@ -47,4 +47,4 @@ describe('Como usuario quiero poder borrar una habitación del sistema', () => {
     limpiarEstado();
   });
 });
-*/
+

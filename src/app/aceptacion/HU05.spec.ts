@@ -5,7 +5,7 @@ import {Habitacion} from '../habitaciones/habitacion';
 import {Dispositivo} from '../dispositivos/dispositivo';
 import {HabitacionYaAnadida} from '../habitaciones/errores/habitacion-ya-anadida';
 import {HabitacionNoEncontrada} from '../habitaciones/errores/habitacion-no-encontrada';
-/*
+
 describe('HU05: Como usuario quiero poder cambiar de habitación un dispositivo', () => {
 
   let habitaciones: HabitacionesService;
@@ -85,4 +85,4 @@ describe('HU05: Como usuario quiero poder cambiar de habitación un dispositivo'
   });
 
 });
-*/
+

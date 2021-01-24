@@ -3,7 +3,7 @@ import {Habitacion} from '../habitacion';
 import {HabitacionesService} from '../habitaciones.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {AnyadirHabitacionComponent} from './anyadir-habitacion/anyadir-habitacion.component';
-import {error} from "@angular/compiler/src/util";
+import {error} from '@angular/compiler/src/util';
 
 export interface DialogData{
   animal: string;
@@ -22,13 +22,17 @@ export class HabitacionesComponent implements OnInit {
   name: string;
   dialogoRef: MatDialogRef<AnyadirHabitacionComponent, any>;
   ngOnInit(): void {
+    async () => {
+      this.habitaciones = await this.habService.listarHabitaciones();
 
+    }
   }
+
   openDialog(): void{
 
     console.log('The dialog was open');
     this.dialogoRef = this.dialogo.open(AnyadirHabitacionComponent, {
-      width: '250px',
+      width: '270px',
       height: '200px',
       disableClose: false,
       data: {name: this.name, animal: this.animal}

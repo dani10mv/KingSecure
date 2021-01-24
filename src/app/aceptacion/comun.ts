@@ -20,12 +20,7 @@ import {HabitacionesComponent} from '../habitaciones/habitaciones/habitaciones.c
 import {DispositivosComponent} from '../dispositivos/dispositivos/dispositivos.component';
 import {InfoHabtiacionesComponent} from '../habitaciones/habitaciones/info-habtiaciones/info-habtiaciones.component';
 import {AnyadirHabitacionComponent} from '../habitaciones/habitaciones/anyadir-habitacion/anyadir-habitacion.component';
-
-export function obtenerServicioDispositivos(): DispositivosService {
-  TestBed.configureTestingModule({});
-  return  TestBed.inject(DispositivosService);
-}
-export function obtenerServicioHabitaciones(): HabitacionesService {
+beforeEach(() => {
   TestBed.configureTestingModule({
     declarations: [
       AppComponent,
@@ -35,10 +30,28 @@ export function obtenerServicioHabitaciones(): HabitacionesService {
       AnyadirHabitacionComponent
     ],
     imports: [
+      BrowserModule,
+      MatCardModule,
+      MatDividerModule,
+      MatGridListModule,
+      MatToolbarModule,
+      MatSidenavModule,
+      MatButtonModule,
+      MatIconModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      FormsModule,
       AngularFireModule.initializeApp(environment.firebase),
-      AngularFireModule
+      AngularFireModule,
+      BrowserAnimationsModule
+
     ]
   });
+});
+export function obtenerServicioDispositivos(): DispositivosService {
+  return  TestBed.inject(DispositivosService);
+}
+export function obtenerServicioHabitaciones(): HabitacionesService {
   return  TestBed.inject(HabitacionesService);
 }
 

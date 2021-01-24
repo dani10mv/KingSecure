@@ -3,7 +3,7 @@ import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones} from './comun';
 import {Habitacion} from '../habitaciones/habitacion';
 import {Dispositivo} from '../dispositivos/dispositivo';
-/*
+
 describe('HU11: Como usuario quiero poder consultar el estado de los dispositivos de una habitación',  () => {
 
   let habitaciones: HabitacionesService;
@@ -72,4 +72,4 @@ describe('HU11: Como usuario quiero poder consultar el estado de los dispositivo
     limpiarEstado();
   });
 });
-*/
+

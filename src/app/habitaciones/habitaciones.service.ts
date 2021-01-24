@@ -20,8 +20,8 @@ export class HabitacionesService {
     private db: AngularFirestore
   ) {
     this.habitacionesCollection = this.db.collection('habitaciones');
-    this.habitacionesList = this.habitacionesCollection.snapshotChanges().pipe(map(actions=>{
-      return actions.map(a=>{
+    this.habitacionesList = this.habitacionesCollection.snapshotChanges().pipe(map(actions =>{
+      return actions.map(a =>{
         const data = a.payload.doc.data() as Habitacion;
         data.id = a.payload.doc.id;
         return data;
@@ -33,8 +33,8 @@ export class HabitacionesService {
   anadirHabitacion(habitacion: Habitacion):void{
 
     this.habitacionesList.forEach(habs=>{
-      habs.forEach(hab=>{
-          if (hab.nombre===habitacion.nombre){
+      habs.forEach(hab =>{
+          if (hab.nombre ===habitacion.nombre){
             return new HabitacionYaAnadida(habitacion.nombre);
           }
         }
@@ -52,7 +52,7 @@ export class HabitacionesService {
     throw new Error('Unimplemented');
   }
 
-  listarHabitaciones():Promise<Habitacion[]>{
+  listarHabitaciones(): Promise<Habitacion[]>{
     return this.habitacionesList.toPromise();
   }
 

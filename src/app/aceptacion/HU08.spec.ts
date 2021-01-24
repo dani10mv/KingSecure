@@ -3,7 +3,7 @@ import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones}
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Dispositivo} from '../dispositivos/dispositivo';
 import {Habitacion} from '../habitaciones/habitacion';
-/*
+
 describe('HU08: Como usuario quiero que se guarden los cambios cuando cierre la aplicación', () => {
 
   let habitaciones: HabitacionesService;
@@ -73,4 +73,4 @@ describe('HU08: Como usuario quiero que se guarden los cambios cuando cierre la 
     limpiarEstado();
   });
 });
-*/
+

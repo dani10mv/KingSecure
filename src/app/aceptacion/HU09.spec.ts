@@ -6,7 +6,7 @@ import {limpiarEstado, obtenerServicioDispositivos, obtenerServicioHabitaciones}
 import {DispositivosService} from '../dispositivos/dispositivos.service';
 import {Habitacion} from '../habitaciones/habitacion';
 import {HabitacionesService} from '../habitaciones/habitaciones.service';
-/*
+
 describe('HU09: Consultar el estado de un dispositivo', () => {
 
   let dispositivos: DispositivosService;
@@ -57,4 +57,4 @@ describe('HU09: Consultar el estado de un dispositivo', () => {
     limpiarEstado();
   });
 });
-*/
+
