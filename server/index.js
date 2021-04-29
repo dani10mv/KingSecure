@@ -75,6 +75,33 @@ const addHabitacion = async (habitacion) => {
   return result;
 };
 
+//borrar habitacion
+const deleteHabitacion = async (codigo) => {
+  const client = await pool.connect();
+
+
+  const result = await client.query(
+    "delete from habitacion where codigo = $1;",[codigo]
+  );
+
+  await client.end();
+  return result;
+};
+
+
+//actualizar habitacion
+
+const updateHabitacion = async (habitacion) => {
+  const client = await pool.connect();
+
+
+  const result = await client.query(
+    "UPDATE habitacion SET nombre=$1 where codigo = $2;",[habitacion.nombre,habitacion.codigo]
+  );
+
+  await client.end();
+  return result;
+};
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -105,6 +132,20 @@ app.post('/habitacion/add', async (req, res) => {
   res.send(q)
 });
 
+app.delete('/habitacion/delete/:codigo', async (req, res) => {
+
+  const q = await deleteHabitacion(req.params.codigo);
+  console.log(q);
+  res.send(q)
+});
+
+
+app.put('/habitacion/update', async (req, res) => {
+
+  const q = await updateHabitacion(req.body);
+  console.log(q);
+  res.send(q)
+});
 
 
 app.listen(8000, () => {
