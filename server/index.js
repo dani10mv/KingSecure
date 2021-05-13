@@ -172,7 +172,7 @@ const addSensor = async (sensor) => {
     "insert into sensor values($1);", [sensor.codigo]
   );
 
-  if (sensor. === "Movimiento") {
+  if (sensor.tipoSensor === "Movimiento") {
 
    await client.query(
       "insert into sensor_movimiento values($1,$2);", [sensor.codigo, 0]
