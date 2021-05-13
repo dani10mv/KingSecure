@@ -359,7 +359,7 @@ const deleteSensorFromHabitacion = async (sensor)=>{
   return result;
 }
 
-
+//*******************************DIRECCIONAMOENTO DE DISPOSITIVOS************************************************ */
 
 app.post('/sensor/add', async (req, res) => {
 
