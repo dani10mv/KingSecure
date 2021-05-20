@@ -11,6 +11,13 @@ const pool = new Pool({
   port: 5432,
 });
 
+
+const port =  process.env.PORT || 8000;
+app.listen(port, () => {
+  console.log('Example app listening on port 8000!')
+});
+
+
 app.use(cors())
 app.use(express.json());
 
@@ -497,9 +504,6 @@ app.put('/sensor/update', async (req, res) => {
 
 
 
-const port =  process.env.PORT || 8000;
-app.listen(port, () => {
-  console.log('Example app listening on port 8000!')
-});
+
 
 
