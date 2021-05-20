@@ -385,6 +385,8 @@ const updateSensor = async (sensor) => {
 
   await client.end();
 
+
+  //para devolver solo la string y no el objeto
   const list  = actuadoreAActivar.rows.map(obj=>obj.actuador_codigo);
 
   return list;
@@ -495,8 +497,8 @@ app.put('/sensor/update', async (req, res) => {
 
 
 
-
-app.listen(8000, () => {
+const port =  process.env.PORT || 8000;
+app.listen(port, () => {
   console.log('Example app listening on port 8000!')
 });
 
