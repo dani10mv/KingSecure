@@ -174,11 +174,11 @@ const addSensor = async (sensor) => {
 
   if (sensor.tipoSensor === "Movimiento") {
 
-   await client.query(
+    await client.query(
       "insert into sensor_movimiento values($1,$2);", [sensor.codigo, 0]
     );
   } else if (sensor.tipoSensor === "Apertura") {
-     await client.query(
+    await client.query(
       "insert into sensor_apertura values($1,$2);", [sensor.codigo, 0]
     );
   }
@@ -193,6 +193,7 @@ const addSensor = async (sensor) => {
 };
 
 
+
 //añadir sensor
 const deleteSensor = async (sensor) => {
   const client = await pool.connect();
@@ -202,14 +203,14 @@ const deleteSensor = async (sensor) => {
     "delete from sensores_habitacion where sensor_codigo=$1;", [sensor]
   );
 
-  
-    result = await client.query(
-      "delete from sensor_movimiento where codigo=$1;", [sensor]
-    );
 
-    result = await client.query(
-      "delete from  sensor_apertura where codigo=$1;", [sensor]
-    );
+  result = await client.query(
+    "delete from sensor_movimiento where codigo=$1;", [sensor]
+  );
+
+  result = await client.query(
+    "delete from  sensor_apertura where codigo=$1;", [sensor]
+  );
 
 
   result = await client.query(
@@ -257,14 +258,14 @@ const deleteActuador = async (actuador) => {
     "delete from actuadores_habitacion where actuador_codigo=$1;", [actuador]
   );
 
-  
+
   result = await client.query(
     "delete from actuador where codigo=$1;", [actuador]
-    );
-    
-    result = await client.query(
-      "delete from dispositivo where codigo=$1;", [actuador]
-    );
+  );
+
+  result = await client.query(
+    "delete from dispositivo where codigo=$1;", [actuador]
+  );
 
   await client.end();
   return result;
@@ -272,7 +273,7 @@ const deleteActuador = async (actuador) => {
 
 
 //añadir senso
-const addSensorToHabitacion = async ( habitacion,sensor) => {
+const addSensorToHabitacion = async (habitacion, sensor) => {
   const client = await pool.connect();
 
 
@@ -302,7 +303,7 @@ const addSensorToHabitacion = async ( habitacion,sensor) => {
 
 
 
-const addActuadorToHabitacion = async ( habitacion,actuador) => {
+const addActuadorToHabitacion = async (habitacion, actuador) => {
   const client = await pool.connect();
 
   await client.query(
@@ -322,7 +323,7 @@ const addActuadorToHabitacion = async ( habitacion,actuador) => {
 };
 
 
-const deleteActuadorFromHabitacion = async (actuador)=>{
+const deleteActuadorFromHabitacion = async (actuador) => {
 
   const client = await pool.connect();
 
@@ -339,7 +340,7 @@ const deleteActuadorFromHabitacion = async (actuador)=>{
 }
 
 
-const deleteSensorFromHabitacion = async (sensor)=>{
+const deleteSensorFromHabitacion = async (sensor) => {
 
   const client = await pool.connect();
 
@@ -358,6 +359,54 @@ const deleteSensorFromHabitacion = async (sensor)=>{
   await client.end();
   return result;
 }
+
+
+const updateSensor = async (sensor) => {
+
+  const client = await pool.connect();
+
+  var result = await client.query(
+    "update sensor_apertura set estado = $1 where codigo = $2;", [sensor.estado, sensor.codigo]
+  );
+
+  await client.query(
+    "update sensor_movimiento set estado = $1 where codigo = $2;", [sensor.estado, sensor.codigo]
+  );
+
+  var actuadoreAActivar = [];
+//si se activa el sensor se mandan lso actuadores que se activaran
+  if(sensor.estado==2){
+
+    actuadoreAActivar = await client.query(
+      "select actuador_codigo from sensores_habitacion join actuadores_habitacion using(habitacion_codigo) where sensor_codigo=$1;",[sensor.codigo] 
+    );
+
+  }
+
+  await client.end();
+
+  const list  = actuadoreAActivar.rows.map(obj=>obj.actuador_codigo);
+
+  return list;
+
+}
+
+
+const updateActuador = async (actuador) => {
+
+  const client = await pool.connect();
+
+  var result = await client.query(
+    "update actuador set estado = $1 where codigo = $2;", [actuador.estado, actuador.codigo]
+  );
+
+  await client.end();
+
+  return result;
+
+}
+
+
 
 //*******************************DIRECCIONAMOENTO DE DISPOSITIVOS************************************************ */
 
@@ -393,7 +442,7 @@ app.delete('/actuador/delete/:codigo', async (req, res) => {
 //snesor to habitacion 
 app.post('/habitacion/addSensor/:codigoHabitacion/:codigoSensor', async (req, res) => {
 
-  const q = await addSensorToHabitacion(req.params.codigoHabitacion,req.params.codigoSensor);
+  const q = await addSensorToHabitacion(req.params.codigoHabitacion, req.params.codigoSensor);
   console.log(q);
   res.send(q)
 });
@@ -403,7 +452,7 @@ app.post('/habitacion/addSensor/:codigoHabitacion/:codigoSensor', async (req, re
 //sensor to habitacion
 app.post('/habitacion/addActuador/:codigoHabitacion/:codigoActuador', async (req, res) => {
 
-  const q = await addActuadorToHabitacion(req.params.codigoHabitacion,req.params.codigoActuador);
+  const q = await addActuadorToHabitacion(req.params.codigoHabitacion, req.params.codigoActuador);
   console.log(q);
   res.send(q)
 });
@@ -414,7 +463,7 @@ app.delete('/sensor/deleteFromHabitacion/:codigo', async (req, res) => {
   console.log(q);
   res.send(q)
 });
- 
+
 app.delete('/actuador/deleteFromHabitacion/:codigo', async (req, res) => {
 
   const q = await deleteActuadorFromHabitacion(req.params.codigo);
@@ -422,6 +471,33 @@ app.delete('/actuador/deleteFromHabitacion/:codigo', async (req, res) => {
   res.send(q)
 });
 
+
+app.put('/actuador/update', async (req, res) => {
+  
+  const q = await updateActuador(req.body);
+  console.log(q);
+  res.send(q)
+});
+
+
+app.put('/sensor/update', async (req, res) => {
+
+  const q = await updateSensor(req.body);
+  console.log(q);
+  res.send(q)
+});
+
+
+
+
+
+
+
+
+
+
 app.listen(8000, () => {
   console.log('Example app listening on port 8000!')
 });
+
+
