@@ -3,12 +3,12 @@ const app = express();
 var cors = require('cors')
 const Pool = require("pg").Pool;
 
+const connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
+
 const pool = new Pool({
-  user: "uxwhir6xmouk90qhvwsj",
-  host: "bj5arilcdpjaediqsw4g-postgresql.services.clever-cloud.com",
-  database: "bj5arilcdpjaediqsw4g",
-  password: "412Rj0rha1ciaLWoZWZA",
-  port: 5432,
+
+  connectionString:'postgresql://uxwhir6xmouk90qhvwsj:412Rj0rha1ciaLWoZWZA@bj5arilcdpjaediqsw4g-postgresql.services.clever-cloud.com:5432/bj5arilcdpjaediqsw4g',
+  ssl: { rejectUnauthorized: false }
 });
 
 
