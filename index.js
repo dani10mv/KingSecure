@@ -142,6 +142,20 @@ const allSensorsMovement= async () =>{
 
 }
 
+const allActuadores= async () =>{
+
+  const client = await pool.connect();
+
+
+  const result = await client.query(
+    "Select * from actuador join dispositivo using(codigo) ;"
+  );
+
+  await client.end();
+  return result.rows;
+
+}
+
 
 //HABITACIONES RUTAS
 /************************************************************************************************************** */
@@ -184,6 +198,13 @@ app.get('/actuadores/:codigo', async (req, res) => {
   console.log(q);
   res.send(q)
 });
+
+app.get('/actuadores', async (req, res) => {
+  const q = await allActuadores();
+  console.log(q);
+  res.send(q)
+});
+
 
 
 
