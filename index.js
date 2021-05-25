@@ -496,14 +496,3 @@ app.put('/sensor/update', async (req, res) => {
   res.send(q)
 });
 
-
-
-
-
-
-
-
-
-
-
-
