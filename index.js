@@ -114,6 +114,34 @@ const updateHabitacion = async (habitacion) => {
 };
 
 
+const allSensorsAperture= async () =>{
+
+  const client = await pool.connect();
+
+
+  const result = await client.query(
+    "Select * from sensor_apertura join dispositivo using(codigo) ;"
+  );
+
+  await client.end();
+  return result.rows;
+
+}
+
+const allSensorsMovement= async () =>{
+
+  const client = await pool.connect();
+
+
+  const result = await client.query(
+    "Select * from sensor_movimiento join dispositivo using(codigo) ;"
+  );
+
+  await client.end();
+  return result.rows;
+
+}
+
 
 //HABITACIONES RUTAS
 /************************************************************************************************************** */
@@ -130,17 +158,35 @@ app.get('/habitaciones', async (req, res) => {
   res.send(q)
 });
 
+
+app.get('/sensores/apertura', async (req, res) => {
+  const q = await allSensorsAperture();
+  console.log(q);
+  res.send(q)
+});
+
+app.get('/sensores/movimiento', async (req, res) => {
+  const q = await allSensorsMovement();
+  res.send(q)
+});
+
 app.get('/sensores/:codigo', async (req, res) => {
   const q = await listSensoresFromHabitacion(req.params.codigo);
   console.log(q);
   res.send(q)
 });
 
+
+
+
 app.get('/actuadores/:codigo', async (req, res) => {
   const q = await listActuadoresFromHabitacion(req.params.codigo);
   console.log(q);
   res.send(q)
 });
+
+
+
 
 app.post('/habitacion/add', async (req, res) => {
 
