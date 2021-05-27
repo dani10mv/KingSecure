@@ -491,6 +491,7 @@ app.post('/sensor/add', async (req, res) => {
   const q = await addSensor(req.body);
   console.log(q);
   res.send(q)
+  
 });
 
 app.post('/actuador/add', async (req, res) => {
