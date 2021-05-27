@@ -7,12 +7,12 @@ const connectionString = 'postgresql://dbuser:secretpassword@database.server.com
 
 const pool = new Pool({
 
-  connectionString:'postgresql://uxwhir6xmouk90qhvwsj:412Rj0rha1ciaLWoZWZA@bj5arilcdpjaediqsw4g-postgresql.services.clever-cloud.com:5432/bj5arilcdpjaediqsw4g',
+  connectionString: 'postgresql://uxwhir6xmouk90qhvwsj:412Rj0rha1ciaLWoZWZA@bj5arilcdpjaediqsw4g-postgresql.services.clever-cloud.com:5432/bj5arilcdpjaediqsw4g',
   ssl: { rejectUnauthorized: false }
 });
 
 
-const port =  process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log('Example app listening on port 8000!')
 });
@@ -114,7 +114,7 @@ const updateHabitacion = async (habitacion) => {
 };
 
 
-const allSensorsAperture= async () =>{
+const allSensorsAperture = async () => {
 
   const client = await pool.connect();
 
@@ -128,7 +128,7 @@ const allSensorsAperture= async () =>{
 
 }
 
-const allSensorsMovement= async () =>{
+const allSensorsMovement = async () => {
 
   const client = await pool.connect();
 
@@ -142,7 +142,7 @@ const allSensorsMovement= async () =>{
 
 }
 
-const allActuadores= async () =>{
+const allActuadores = async () => {
 
   const client = await pool.connect();
 
@@ -448,11 +448,11 @@ const updateSensor = async (sensor) => {
   );
 
   var actuadoreAActivar = [];
-//si se activa el sensor se mandan lso actuadores que se activaran
-  if(sensor.estado==2){
+  //si se activa el sensor se mandan lso actuadores que se activaran
+  if (sensor.estado == 2) {
 
     actuadoreAActivar = await client.query(
-      "select actuador_codigo from sensores_habitacion join actuadores_habitacion using(habitacion_codigo) where sensor_codigo=$1;",[sensor.codigo] 
+      "select actuador_codigo from sensores_habitacion join actuadores_habitacion using(habitacion_codigo) where sensor_codigo=$1;", [sensor.codigo]
     );
 
   }
@@ -461,7 +461,7 @@ const updateSensor = async (sensor) => {
 
 
   //para devolver solo la string y no el objeto
-  const list  = actuadoreAActivar.rows.map(obj=>obj.actuador_codigo);
+  const list = actuadoreAActivar.rows.map(obj => obj.actuador_codigo);
 
   return list;
 
@@ -491,7 +491,7 @@ app.post('/sensor/add', async (req, res) => {
   const q = await addSensor(req.body);
   console.log(q);
   res.send(q)
-  
+
 });
 
 app.post('/actuador/add', async (req, res) => {
@@ -550,7 +550,7 @@ app.delete('/actuador/deleteFromHabitacion/:codigo', async (req, res) => {
 
 
 app.put('/actuador/update', async (req, res) => {
-  
+
   const q = await updateActuador(req.body);
   console.log(q);
   res.send(q)
@@ -564,3 +564,69 @@ app.put('/sensor/update', async (req, res) => {
   res.send(q)
 });
 
+
+//metodo de listado unico de habitaciones u sus sensores
+
+const getCasa = async () => {
+
+
+
+  const client = await pool.connect();
+
+  const habitaciones = await client.query(
+    "Select * from habitacion;"
+  );
+
+  console.log(habitaciones)
+  var casa = []
+  
+  for (let i = 0; i < habitaciones.rowCount; i++) {
+    const habitacion = habitaciones.rows[i];
+
+    
+    console.log("habitacion   = ",habitacion)
+
+  
+
+    const result_apertura = await client.query(
+      "Select d.codigo,d.nombre,sa.estado from sensor as s join sensores_habitacion as sh ON s.codigo = sh.sensor_codigo join dispositivo as d using (codigo) join sensor_apertura as sa using(codigo) where sh.habitacion_codigo=$1;", [habitacion.codigo]
+    );
+    console.log("cosas")
+
+    const result_movimiento = await client.query(
+      "Select d.codigo,d.nombre,sm.estado from sensor as s join sensores_habitacion as sh ON s.codigo = sh.sensor_codigo join dispositivo as d using (codigo) join sensor_movimiento as sm using(codigo) where sh.habitacion_codigo=$1;", [habitacion.codigo]
+    );
+
+
+    const result_actuadores = await client.query(
+      "Select d.codigo,d.nombre,a.estado from actuador as a join actuadores_habitacion as ah ON a.codigo = ah.actuador_codigo join dispositivo as d using (codigo)  where ah.habitacion_codigo=$1;", [habitacion.codigo]
+    );
+
+    const newObj =  {
+      habitacion: habitacion,
+      sensores_movimiento: result_movimiento.rows,
+      sensores_apertura: result_apertura.rows,
+      actuadores: result_actuadores.rows
+
+    }
+
+    console.log(newObj)
+
+    casa.push(newObj);
+
+    
+  }
+
+  await client.end();
+  console.log("termina")
+
+  return casa;
+
+}
+
+app.get('/casa', async (req, res) => {
+
+  const q = await getCasa();
+  console.log(q);
+  res.send(q)
+});
