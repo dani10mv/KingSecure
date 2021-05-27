@@ -246,12 +246,12 @@ const addSensor = async (sensor) => {
     "insert into sensor values($1);", [sensor.codigo]
   );
 
-  if (sensor.tipoSensor === "Movimiento") {
+  if (sensor.tipoSensor.toUpperCase() === "MOVIMIENTO") {
 
     await client.query(
       "insert into sensor_movimiento values($1,$2);", [sensor.codigo, 0]
     );
-  } else if (sensor.tipoSensor === "Apertura") {
+  } else if (sensor.tipoSensor.toUpperCase() === "APERTURA") {
     await client.query(
       "insert into sensor_apertura values($1,$2);", [sensor.codigo, 0]
     );
