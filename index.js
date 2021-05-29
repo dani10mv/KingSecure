@@ -447,7 +447,7 @@ const updateSensor = async (sensor) => {
     "update sensor_movimiento set estado = $1 where codigo = $2;", [sensor.estado, sensor.codigo]
   );
 
-  var actuadoreAActivar = [];
+  var actuadoreAActivar =[];
   //si se activa el sensor se mandan lso actuadores que se activaran
   if (sensor.estado == 2) {
 
@@ -461,7 +461,7 @@ const updateSensor = async (sensor) => {
 
 
   //para devolver solo la string y no el objeto
-  const list = actuadoreAActivar.rows.map(obj => obj.actuador_codigo);
+  const list = actuadoreAActivar.rows?.map(obj => obj.actuador_codigo);
 
   return list;
 
