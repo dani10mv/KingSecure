@@ -365,10 +365,10 @@ const addSensorToHabitacion = async (habitacion, sensor) => {
 
   //el estado es activo sin activado
   await client.query(
-    "update sensor_apertura set estado 1 where codigo = $1;", [actuador]
+    "update sensor_apertura set estado = 1 where codigo = $1;", [actuador]
   );
   await client.query(
-    "update sensor_movimiento set estado 1 where codigo = $1;", [actuador]
+    "update sensor_movimiento set estado = 1 where codigo = $1;", [actuador]
   );
 
   await client.end();
@@ -389,7 +389,7 @@ const addActuadorToHabitacion = async (habitacion, actuador) => {
   );
 
   await client.query(
-    "update actuador set estado 1 where codigo = $1;", [actuador]
+    "update actuador set estado = 1 where codigo = $1;", [actuador]
   );
 
   await client.end();
@@ -452,7 +452,7 @@ const updateSensor = async (sensor) => {
   if (sensor.estado == 2) {
 
     actuadoreAActivar = await client.query(
-      "select actuador_codigo from sensores_habitacion join actuadores_habitacion using(habitacion_codigo) where sensor_codigo=$1;", [sensor.codigo]
+      "select actuador_codigo from sensores_habitacion join actuadores_habitacion using(habitacion_codigo) where sensor_codigo=$1 ;", [sensor.codigo]
     );
 
   }
