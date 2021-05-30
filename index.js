@@ -443,9 +443,15 @@ const updateSensor = async (sensor) => {
     "update sensor_apertura set estado = $1 where codigo = $2;", [sensor.estado, sensor.codigo]
   );
 
+
   await client.query(
     "update sensor_movimiento set estado = $1 where codigo = $2;", [sensor.estado, sensor.codigo]
   );
+
+  await client.query(
+    "update dispositivo set nombre = $1 where codigo = $2;", [sensor.nombre, sensor.codigo]
+  );
+
 
   var actuadoreAActivar =[];
   //si se activa el sensor se mandan lso actuadores que se activaran
@@ -474,6 +480,10 @@ const updateActuador = async (actuador) => {
 
   var result = await client.query(
     "update actuador set estado = $1 where codigo = $2;", [actuador.estado, actuador.codigo]
+  );
+
+  await client.query(
+    "update dispositivo set nombre = $1 where codigo = $2;", [actuador.nombre, actuador.codigo]
   );
 
   await client.end();
