@@ -191,7 +191,11 @@ app.get('/sensores/:codigo', async (req, res) => {
 });
 
 
-
+app.get('/actuadores', async (req, res) => {
+  const q = await allActuadores();
+  console.log(q);
+  res.send(q)
+});
 
 app.get('/actuadores/:codigo', async (req, res) => {
   const q = await listActuadoresFromHabitacion(req.params.codigo);
@@ -199,11 +203,7 @@ app.get('/actuadores/:codigo', async (req, res) => {
   res.send(q)
 });
 
-app.get('/actuadores', async (req, res) => {
-  const q = await allActuadores();
-  console.log(q);
-  res.send(q)
-});
+
 
 
 
@@ -466,11 +466,15 @@ const updateSensor = async (sensor) => {
   await client.end();
 
 
-  //para devolver solo la string y no el objeto
-  const list = actuadoreAActivar.rows?.map(obj => obj.actuador_codigo);
+  if(actuadoreAActivar.rows){
+    
+    //para devolver solo la string y no el objeto
+    const list = actuadoreAActivar.rows.map(obj => obj.actuador_codigo);
 
-  return list;
+    return list;
+  }
 
+  return [];
 }
 
 
